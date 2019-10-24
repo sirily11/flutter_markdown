@@ -233,6 +233,9 @@ class MarkdownBuilder implements md.NodeVisitor {
         _listIndents.removeLast();
       } else if (tag == 'li') {
         if (_listIndents.isNotEmpty) {
+          if (element.children.length == 0) {
+            return;
+          }
           Widget bullet;
           dynamic el = element.children[0];
           if (el is md.Element && el.attributes['type'] == 'checkbox') {
